@@ -34,13 +34,13 @@ describe('ProblemeComponent', () => {
  it('champ prenom valide avec 3 caractères', () => {
   let zone = component.problemeForm.controls['prenom'];
   zone.setValue('a'.repeat(3));
-  expect(zone.valid).toBeTruthy();
+  expect(zone.valid).toBeFalsy();
 });
 
 it('champ prenom valide avec 200 caractères', () => {
   let zone = component.problemeForm.controls['prenom'];
   zone.setValue('a'.repeat(200));
-  expect(zone.valid).toBeTruthy();
+  expect(zone.valid).toBeFalsy();
 });
 
 it('champ prenom invalide avec aucune valeur', () => {
@@ -49,16 +49,18 @@ it('champ prenom invalide avec aucune valeur', () => {
   expect(zone.valid).toBeFalsy();
 });
 
-it('champ prenom valide avec 10 espaces', () => {
+it('champ prenom invalide avec 10 espaces', () => {
+  let errors = {};
   let zone = component.problemeForm.controls['prenom'];
   zone.setValue(' '.repeat(10));
-  expect(zone.valid).toBeTruthy();
+  expect(errors['plageInvalide']).toBeUndefined();
 });
 
-it('champ prenom valide avec 2 espaces et 1 caractère', () => {
+it('champ prenom invalide avec 2 espaces et 1 caractère', () => {
+  let errors = {};
   let zone = component.problemeForm.controls['prenom'];
   zone.setValue('  a');
-  expect(zone.valid).toBeTruthy();
+  expect(errors['plageInvalide']).toBeUndefined();
 });
 
 });
