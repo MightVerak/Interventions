@@ -19,15 +19,15 @@
     (ngSubmit)="save()"
     [formGroup]="problemeForm">
     
-      <div class="form-group-row">
+      <div class="form-group row">
+        <label for="prenomId" class="col-md-2 col form-label text-right">Prenom</label>
         <div class="col-md-10">
-            <label for="prenomId" class="col-md-2 col form-label text-right">Prenom</label>
             <input class="form-control" 
             id="prenomId" 
             type="text" 
             placeholder="Votre prénom ici (obligatoire)" 
             formControlName="prenom"            
-            [ngClass]="{'is-valid': (problemeForm.get('prenom').touched || 
+            [ngClass]="{'is-valid': (problemeForm.get('prenom').touched ||  
             problemeForm.get('prenom').dirty) &&
             (problemeForm.get('prenom').valid),
             'is-invalid': (problemeForm.get('prenom').touched || 
@@ -36,19 +36,18 @@
 
             <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty && problemeForm.get('prenom').errors)"> 
 
-              <span *ngIf="problemeForm.get('prenom').errors.minlength">
-                <small class="text-muted">
-                  Indiquer au moins 3 caractères
-                </small>
-              </span>
               <span *ngIf="problemeForm.get('prenom').errors.required">
                 <small class="text-muted">
-                  Veuillez entrer un prénom
+                  Merci de saisir votre prénom.
                 </small>
               </span>
+              <span *ngIf="problemeForm.get('prenom').errors.plageInvalide">
+                  <small class="text-muted">
+                    Veuillez entrer plus de caractères.
+                  </small>
+                </span>
             </span>
         </div>
-
       </div>
     </form>
   <div class="card-footer">
